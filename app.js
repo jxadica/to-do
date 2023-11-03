@@ -6,17 +6,21 @@ const output= document.querySelector(".output");
 const sort=document.querySelector(".sort");
 const span= document.createElement("span");
 const sorting=document.querySelector(".sorting");
-
+const az=document.querySelector(".az");
+const za=document.querySelector(".za");
 let ascendingOrder = true;
+za.style.display="none";
 function addTask (){
          const li= document.createElement("li");
+         const span= document.createElement("span");
          const tasks= document.querySelector(".task");
          const content=tasks.value;
          
     if (content!==" " && content!==""){
-        list.style.display="block";
-        output.style.display="block";
-        li.innerText=content;
+        list.style.display="inline-block";
+        // output.style.display="block";
+        span.innerText=content;
+        li.prepend(span)
         list.appendChild(li);
     const remove1= document.createElement("a");
         remove1.href="#";
@@ -29,34 +33,46 @@ function addTask (){
             output.style.display="none";
             list.style.display="none";
         }
-        special.remove();
-      
+      az.style.display="block";
     });
 }
 tasks.value = "";
 }
-
 add.addEventListener('click',addTask);
 
-    sort.addEventListener("click",()=>{
+    az.addEventListener('click',()=>{
+        az.style.display="block";
+    za.style.display="none";
         const listItems = Array.from(list.querySelectorAll("li"));
-        console.log(listItems);
-        listItems.sort((a, b) => {
+            listItems.sort((a, b) => {
             const textA = a.innerText.trim().toLowerCase();
             const textB = b.innerText.trim().toLowerCase();
-            if (ascendingOrder) {
-                return textA.localeCompare(textB);
-            } else {
-                return textB.localeCompare(textA);
-            }
+            return textA.localeCompare(textB);
         });
         list.innerHTML = '';
         listItems.forEach((li) => {
             list.appendChild(li);
         });
-        ascendingOrder = !ascendingOrder;
-    })
-    
+        az.style.display="none";
+        za.style.display="block";
+    });
+
+    za.addEventListener('click',()=>{
+        za.style.display="block";
+    az.style.display="none";
+        const listItems = Array.from(list.querySelectorAll("li"));
+            listItems.sort((a, b) => {
+            const textA = a.innerText.trim().toLowerCase();
+            const textB = b.innerText.trim().toLowerCase();
+            return textB.localeCompare(textA);
+        });
+        list.innerHTML = '';
+        listItems.forEach((li) => {
+            list.appendChild(li);
+        });
+        za.style.display="none";
+        az.style.display="block";
+    });
 
 
 

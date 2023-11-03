@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    width: 70%;
+    width: 80%;
     margin: 0 auto; 
     padding: 20px;
     display: flex;
@@ -19,7 +19,7 @@ body {
     justify-content: center;
     align-items: center;
     /* position: relative; */
-    height: 70vh;
+    height: 85vh;
     background-color: #7096D1 ;
     box-shadow: 0 0 10px #535878;
     }
@@ -42,8 +42,8 @@ h1 {
     border: 1px solid #787f80;
 }
 .send {
-    margin-top: 15px;
-margin-left: 39px;
+    /* margin-top: 15px;
+    margin-left: 39px; */
     width: 100px;
     height: 53px;
     background-color: #d0e3ff;
@@ -61,6 +61,11 @@ margin-left: 39px;
     margin-top: 20px;
     margin-left: 58%;
 }
+.sorting {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
 .taskList {
       text-align: left;  
       display: none;
@@ -70,18 +75,17 @@ margin-left: 39px;
 }
 .output {
     background-color: #c7d1e0;
-    width: 62%;
+    width: 100%;
     margin-top:20px ;
+    padding-left: 20px;
     border:  1px solid #787f80;;
     border-radius: 20px;
-    /* display: none; */
-        display: flex;
-        flex-wrap: wrap;
-    
-   
+    display: flex;
+    justify-content: space-between;
 }
 li{
     overflow-wrap:break-word;
+    list-style-position: outside;
 }
 .remove {
     box-sizing: border-box;
@@ -102,7 +106,6 @@ li{
 .remove::before {
     content: "";
     display: inline-block;
-    /
     box-sizing: border-box;
     position: absolute;
     width: 10px;
@@ -114,15 +117,21 @@ li{
 }
 .row {
     width: 64%;
-    margin-left: 95px;
+    justify-content: space-between;
+    width: 565px;
+    display: flex;
+    /* margin-left: 95px; */
 }
 .taskList {
     width:100%;
+    padding-top: 20px;
 }
-li{
-    /* display: flex; */
-    justify-content: space-between;
-    /* word-wrap: break-word; */
+span {
+    vertical-align: top;
+    display: inline-block;
+    width: 545px;
+    height: fit-content;
 }
+
 
     
