@@ -14,7 +14,6 @@ body {
  padding: 0;
  box-sizing: border-box;
 }
-
 .container {
     width: 80%;
     margin: 0 auto; 
@@ -27,8 +26,6 @@ body {
     background-color: #7096D1 ;
     box-shadow: 0 0 10px #535878;
     }
-    
-    
 h1 {
     margin-bottom: 56px;
     color: #f2f0de;
@@ -86,7 +83,6 @@ h1 {
     justify-content: space-between;
     max-height: 400px; 
     overflow-y: auto; 
-    /* height: auto; */
 }
 li{
     overflow-wrap:break-word;
