@@ -17,6 +17,7 @@ function addTask (){
          const content=tasks.value;
          
     if (content.trim()!=="" && content!==""){
+        output.style.display="flex"
         list.style.display="inline-block";
         span.innerText=content;
         li.prepend(span)
@@ -45,6 +46,7 @@ tasks.value = "";
 add.addEventListener('click',addTask);
 
     az.addEventListener('click',()=>{
+        
         az.style.display="block";
     za.style.display="none";
         const listItems = Array.from(list.querySelectorAll("li"));

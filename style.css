@@ -79,7 +79,7 @@ h1 {
     padding-left: 20px;
     border:  1px solid #787f80;;
     border-radius: 20px;
-    display: flex;
+    display: none;
     justify-content: space-between;
     max-height: 400px; 
     overflow-y: auto; 
