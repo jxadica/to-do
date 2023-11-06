@@ -8,7 +8,7 @@ const span= document.createElement("span");
 const sorting=document.querySelector(".sorting");
 const az=document.querySelector(".az");
 const za=document.querySelector(".za");
-let ascendingOrder = true;
+// let ascendingOrder = true;
 za.style.display="none";
 function addTask (){
          const li= document.createElement("li");
@@ -16,9 +16,8 @@ function addTask (){
          const tasks= document.querySelector(".task");
          const content=tasks.value;
          
-    if (content!==" " && content!==""){
+    if (content.trim()!=="" && content!==""){
         list.style.display="inline-block";
-        // output.style.display="block";
         span.innerText=content;
         li.prepend(span)
         list.appendChild(li);
@@ -33,8 +32,13 @@ function addTask (){
             output.style.display="none";
             list.style.display="none";
         }
+        
       az.style.display="block";
     });
+}
+if(list.childElementCount !== 0){
+    output.style.display="block";
+            list.style.display="block";
 }
 tasks.value = "";
 }
