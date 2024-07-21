@@ -1,84 +1,81 @@
+let taskTitle = document.querySelector(".taskTitle");
+let priorityText = document.querySelector(".priority");
+let addButton = document.querySelector(".toDoAdd");
+let tasklists = document.querySelector(".taskLists");
 
+function pageLoadTasks() {
+    let pastTasks = JSON.parse(localStorage.getItem("Todos")) ;
+    for (let i = 0; i < pastTasks.length; i++) {
+        let newTodo = createTodo(pastTasks[i].title, pastTasks[i].priority);
+        tasklists.append(newTodo);
+    }
+}
+pageLoadTasks();
 
-const add= document.querySelector(".send");
-const list= document.querySelector(".taskList");
-const output= document.querySelector(".output");
-const sort=document.querySelector(".sort");
-const span= document.createElement("span");
-const sorting=document.querySelector(".sorting");
-const az=document.querySelector(".az");
-const za=document.querySelector(".za");
-// let ascendingOrder = true;
-za.style.display="none";
-function addTask (){
-         const li= document.createElement("li");
-         const span= document.createElement("span");
-         const tasks= document.querySelector(".task");
-         const content=tasks.value;
-         
-    if (content.trim()!=="" && content!==""){
-        output.style.display="flex"
-        list.style.display="inline-block";
-        span.innerText=content;
-        li.prepend(span)
-        list.appendChild(li);
-    const remove1= document.createElement("a");
-        remove1.href="#";
-        remove1.className="remove"
-        li.appendChild(remove1);
-        remove1.addEventListener("click",(e)=>{
-        e.preventDefault()
-        e.target.parentElement.remove();
-        if(list.childElementCount===0){
-            output.style.display="none";
-            list.style.display="none";
+function createTodo (title, priority) {
+    let task = document.createElement("div");
+    task.classList.add("task");
+    task.innerHTML = `
+        <div class="taskContent"> 
+            <p class="taskText">${title}</p>
+            <p class="priorityText">${priority}</p>
+        </div>
+        <div class="taskButton">
+            <button class="editButton">Edit</button>
+            <button class="deleteButton">Delete</button>
+        </div>
+    `;
+    
+    let deleteButton = task.querySelector(".deleteButton");
+    deleteButton.addEventListener("click", function() {
+        task.remove();
+        removeFromLocalStorage(title, priority);
+    });
+    
+    let editButton = task.querySelector(".editButton");
+    editButton.addEventListener("click", function() {
+        let taskText = task.querySelector(".taskText");
+        if (editButton.textContent === "Edit") {
+            taskText.contentEditable = true;
+            editButton.textContent = 'Save';
+        } else {
+            editButton.textContent = 'Edit';
+            taskText.contentEditable = false;
+            updateLocalStorage(title, taskText.textContent, priority);
         }
-        
-      az.style.display="block";
-    });
-}
-if(list.childElementCount !== 0){
-    output.style.display="block";
-            list.style.display="block";
-}
-tasks.value = "";
-}
-add.addEventListener('click',addTask);
-
-    az.addEventListener('click',()=>{
-        
-        az.style.display="block";
-    za.style.display="none";
-        const listItems = Array.from(list.querySelectorAll("li"));
-            listItems.sort((a, b) => {
-            const textA = a.innerText.trim().toLowerCase();
-            const textB = b.innerText.trim().toLowerCase();
-            return textA.localeCompare(textB);
-        });
-        list.innerHTML = '';
-        listItems.forEach((li) => {
-            list.appendChild(li);
-        });
-        az.style.display="none";
-        za.style.display="block";
     });
 
-    za.addEventListener('click',()=>{
-        za.style.display="block";
-    az.style.display="none";
-        const listItems = Array.from(list.querySelectorAll("li"));
-            listItems.sort((a, b) => {
-            const textA = a.innerText.trim().toLowerCase();
-            const textB = b.innerText.trim().toLowerCase();
-            return textB.localeCompare(textA);
-        });
-        list.innerHTML = '';
-        listItems.forEach((li) => {
-            list.appendChild(li);
-        });
-        za.style.display="none";
-        az.style.display="block";
+    return task;
+}
+
+addButton.addEventListener("click", function() {
+    let newTodo = createTodo(taskTitle.value, priorityText.value);
+    let pastTasks = JSON.parse(localStorage.getItem("Todos")) ;
+    
+    pastTasks.push({
+        title: taskTitle.value,
+        priority: priorityText.value
     });
+    
+    localStorage.setItem("Todos", JSON.stringify(pastTasks));
+    tasklists.append(newTodo);
+    taskTitle.value = '';
+    priorityText.value = '';
+});
 
+function removeFromLocalStorage(title, priority) {
+    let pastTasks = JSON.parse(localStorage.getItem("Todos")) ;
+    pastTasks = pastTasks.filter(task => !(task.title === title && task.priority === priority));
+    localStorage.setItem("Todos", JSON.stringify(pastTasks));
+}
 
-
+function updateLocalStorage(oldTitle, newTitle, priority) {
+    let pastTasks = JSON.parse(localStorage.getItem("Todos")) ;
+    for (let task of pastTasks) {
+        if (task.title === oldTitle && task.priority === priority) {
+            task.title = newTitle;
+            break;
+        }
+    }
+    localStorage.setItem("Todos", JSON.stringify(pastTasks));
+}

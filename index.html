@@ -3,25 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My to-do list</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>To-do</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <div class="container">
-        <h1> To-Do List</h1>
-        <div class="row">
-        <input type="text" class="task" placeholder="Add a new task...">
-        <button class="send">Add</button>
-    </div>
-    <div class="sorting">
-        <img src="group1.svg" alt="az" class="az">
-        <img src="Group 91.svg" alt="za" class="za">
-    </div> 
-        <div class="output">
-        <ol class="taskList"> 
-        </ol>
-    </div>
-</div>
-    <script src="./app.js"></script>
+    <div class="todo">
+        <div class="todoContainer">
+           <h1>To Do List</h1>
+           <div class="taskAdd">
+               <div class="titleBox">
+                   <p>Title</p>
+                   <input type="text" class="taskTitle">
+               </div>
+               <div class="priorityBox">
+                   <p>Priority</p>
+                   <select class="priority">
+                       <option value="High">High</option>
+                       <option value="Medium">Medium</option>
+                       <option value="Low">Low</option>
+                   </select>
+               </div>
+               <button class="toDoAdd">Add</button>
+           </div>
+           <div class="taskLists">
+              
+           </div>
+        </div>
+
+   </div>
+   <script src="app.js"></script>
 </body>
 </html>
